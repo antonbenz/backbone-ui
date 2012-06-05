@@ -45,6 +45,9 @@
         hideCallback : _.bind(this._onAutoHide, this)
       });
       $(this._menu.el).hide();
+
+			$(this._menu.el).keydown(_(this._keyThroughItems).bind(this));
+			
       document.body.appendChild(this._menu.el);
 
       // observe model changes
@@ -62,6 +65,10 @@
         this.options.alternatives.unbind('all', _(this.render).bind(this));
         this.options.alternatives.bind('all', _(this.render).bind(this));
       }
+			
+			//on keypress down or up scroll through collection
+			$(this.el).keydown(_(this._keyThroughItems).bind(this));
+
     },
 
     // public accessors 
@@ -133,7 +140,22 @@
     _onAutoHide : function() {
       if(this.options.onMenuHide) this.options.onMenuHide();
       return true;
-    }
+    },
+
+		_keyThroughItems : function(e){
+			if(e.keyCode === 38){
+				var previous = this._menu._determinePreviousItem();
+				this._menu._setSelectedItem(previous, false);
+				this._menu.render();
+				$(previous.el).focus();
+			}else if(e.keyCode === 40){
+				var next = this._menu._determineNextItem();
+				this._menu._setSelectedItem(next, false);
+				this._menu.render();
+				$(next.el).focus();
+			}
+			
+		}
     
   });
 }());

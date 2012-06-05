@@ -33,6 +33,16 @@
       return item || this.options.selectedItem;
     },
 
+		_determineNextItem : function(){
+			var currIndex = _(this._collectionArray()).indexOf(this._determineSelectedItem());
+			return this._collectionArray()[currIndex + 1];
+		},
+		
+		_determinePreviousItem : function(){
+			var currIndex = _(this._collectionArray()).indexOf(this._determineSelectedItem());
+			return this._collectionArray()[currIndex + 1];
+		},
+
     _setSelectedItem : function(item, silent) {
       this.selectedValue = item;
       this.selectedItem = item;
