@@ -3,6 +3,7 @@ $(document).ready(function() {
   module("Backbone.UI.Pulldown");
 
   asyncTest("triggers the onChange callback", function() {
+    expect(2);
     var regions = new Backbone.Collection([{
       name: 'Americas',
       notes: 'Bright'
