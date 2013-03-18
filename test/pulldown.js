@@ -20,6 +20,7 @@ $(document).ready(function() {
     });
 
     var changeEvents = 0, itemClicked;
+    var finished = false;
 
     var pulldown = new Backbone.UI.Pulldown({
       model: coffee,
@@ -37,10 +38,13 @@ $(document).ready(function() {
     pulldown.$('.pulldown_button').click();
     pulldown._menu.$('.content a').eq(1).click();
 
-    window.setTimeout(1000);
-    
-    equal(changeEvents, 1);
-    equal(itemClicked, regions.at(1));
+    setTimeout(function() { 
+      equal(changeEvents, 1);
+      equal(itemClicked, regions.at(1));
+      finished = true;
+    },1000);
+
+    //while(!finished);
 
   });
 });
