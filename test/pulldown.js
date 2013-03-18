@@ -2,7 +2,7 @@ $(document).ready(function() {
 
   module("Backbone.UI.Pulldown");
 
-  test("triggers the onChange callback", function() {
+  asyncTest("triggers the onChange callback", function() {
     var regions = new Backbone.Collection([{
       name: 'Americas',
       notes: 'Bright'
@@ -41,10 +41,8 @@ $(document).ready(function() {
     setTimeout(function() { 
       equal(changeEvents, 1);
       equal(itemClicked, regions.at(1));
-      finished = true;
+      start();
     },1000);
-
-    //while(!finished);
 
   });
 });
