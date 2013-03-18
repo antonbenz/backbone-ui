@@ -34,10 +34,15 @@ $(document).ready(function() {
 
     $('body').append(pulldown.el);
 
-    pulldown.$('.pulldown_button').trigger('click');
-    pulldown._menu.$('.content a').eq(1).trigger('click');
+    pulldown.$('.pulldown_button').click();
+    pulldown._menu.$('.content a').eq(1).click();
 
-    equal(changeEvents, 1);
-    equal(itemClicked, regions.at(1));
+    setTimeout(fucntion(){
+      equal(changeEvents, 1);
+      equal(itemClicked, regions.at(1));
+      finished = true;
+    })
+
+    while(!finished);
   });
 });
