@@ -37,8 +37,8 @@ $(document).ready(function() {
 
     $('body').append(pulldown.el);
 
-    pulldown.$('.pulldown_button').click();
-    pulldown._menu.$('.content a').eq(1).click();
+    pulldown.$('.pulldown_button').triggerHandler('click');
+    pulldown._menu.$('.content a').eq(1).triggerHandler('click');
 
     equal(changeEvents, 1);
     equal(itemClicked, regions.at(1));
