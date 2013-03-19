@@ -2,8 +2,8 @@ $(document).ready(function() {
 
   module("Backbone.UI.Pulldown");
 
-  asyncTest("triggers the onChange callback", function() {
-    expect(2);
+  test("triggers the onChange callback", function() {
+
     var regions = new Backbone.Collection([{
       name: 'Americas',
       notes: 'Bright'
@@ -20,7 +20,8 @@ $(document).ready(function() {
       region: regions.at(0)
     });
 
-    var changeEvents = 0, itemClicked;
+    var changeEvents = 0;
+    var itemClicked = null;
     var finished = false;
 
     var pulldown = new Backbone.UI.Pulldown({
@@ -39,11 +40,8 @@ $(document).ready(function() {
     pulldown.$('.pulldown_button').click();
     pulldown._menu.$('.content a').eq(1).click();
 
-    setTimeout(function() { 
-      equal(changeEvents, 1);
-      equal(itemClicked, regions.at(1));
-      start();
-    },1000);
+    equal(changeEvents, 1);
+    equal(itemClicked, regions.at(1));
 
   });
 });
